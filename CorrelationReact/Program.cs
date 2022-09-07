@@ -1,8 +1,12 @@
+using CorrelationReact.Services;
+
 var builder = WebApplication.CreateBuilder( args );
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<ICorrelationCalculator, CorrelationCalculator>();
+builder.Services.AddHttpClient<ICorrelationService, CorrelationService>();
 
 var app = builder.Build();
 
@@ -22,3 +26,4 @@ app.MapControllerRoute(
 app.MapFallbackToFile( "index.html" ); ;
 
 app.Run();
+
